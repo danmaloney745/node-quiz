@@ -8,19 +8,18 @@ $(() => {
     })
     .then((data) => {
         let theData = data.result.results;
-        console.log(theData);
-        $("#quizData").append(`<h2>${data.name}</h2>`);
-        //console.log(data.result.results[0].category);
 
-        for(let i in theData) {
-            console.log(theData[i].category);
-            $("#quizData").append(`<p>${theData[i].category}</p>`);
+        for(let i = 0; i < 1; i++) {
+            $("#quizCategory").append(`<p>${theData[i].category}</p>`);
+            $("#question").append(`<p>${theData[i].question}</p>`);
+            $("#correct").append(`<p>${theData[i].correct_answer}</p>`);
+            
+            for(let j = 0; j < theData[i].incorrect_answers.length; j++){
+                $(`#answer${j}`).append(`<p>${theData[i].incorrect_answers[j]}</p>`);
+            }
         }
 
-        console.log("passed the array");
-        /*for(let item in theData){
-            console.log(theData[item]);
-            
-        }*/
     });
 });
+
+/*math.random the divs for the incorrect questions*/
