@@ -6,12 +6,11 @@ class Quiz {
     }
 
     static getQuizData(req,res){
-        rest.get('https://opentdb.com/api.php?amount=10').on('complete', function(result){
+        rest.get('https://opentdb.com/api.php?amount=10&type=multiple').on('complete', function(result){
             if(result instanceof Error){
                 console.log('Error: ', result.message);
                 res.send(body);
             } else {
-                console.log(result);
                 res.send({
                     name: req.body.name,
                     result: result
