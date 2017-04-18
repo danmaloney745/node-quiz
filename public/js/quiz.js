@@ -44,6 +44,7 @@ $(() => {
             $("#quizCategory").text(`Category: ${data[questionCounter].category}`);
             $("#question").text(`Question: ${data[questionCounter].question}`);
             populateAnswers(data, questionCounter);
+            checkAnswer();
         }
 
         /**
@@ -71,7 +72,7 @@ $(() => {
          * @param {Array} answers 
          */
         function removeAnswers(answers){
-            array.splice(0, answers.length)
+            answers.splice(0, answers.length)
         }
 
         /**
@@ -91,6 +92,23 @@ $(() => {
          */
         function populateButtons(position, answer) {
             $(`#answer${position}`).text(`${answer}`);
+        }
+
+        function checkAnswer(){
+            //Get the correct anser from the data object
+            let correctAnswer = theData[questionCounter].correct_answer;
+            //Get the answers from the DOM and store them in a variable
+            let answer = document.getElementsByTagName('a');
+            for(i = 0; i < answer.length; i++){
+                $(`#answer${i}`).on('click', function(e){
+                    e.preventDefault();
+                    if($(this).text() == correctAnswer){
+                        console.log("Correct!");
+                    } else {
+                        console.log("Incorrect");
+                    }
+                });
+            } 
         }
 
     });
